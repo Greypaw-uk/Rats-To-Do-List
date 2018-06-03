@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 
 namespace To_Do_List
 {
     public class MainWindowDataContext
     {
-        public List<TodoListEntry> titleList { get; set; } = new List<TodoListEntry>();
+        public static ObservableCollection<TodoListEntry> contentList { get; set; } = new ObservableCollection<TodoListEntry>();
     }
 }

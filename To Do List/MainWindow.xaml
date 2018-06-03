@@ -16,7 +16,7 @@
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
             <Menu Background="#FF336CCB" Foreground="AliceBlue">
-                <MenuItem Header="_Save" Click="SaveFile"/>
+                <MenuItem Header="_New" Click="newItem"/>
                 <MenuItem Header="_Close" Click="CloseProgram"/>
             </Menu>
         </StackPanel>
@@ -24,43 +24,68 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
             </Grid.ColumnDefinitions>
 
-            <Grid Row="0" Column="0" Margin="10,40,0,10">
-                <TextBlock Text="Title"/>
-                <ListBox ItemsSource="{Binding titleList}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding title}"/>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+            <Grid Row="0" Column="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="10"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Grid Row="1">
+                        <ListBox Name="lb_titles"  ItemsSource="{Binding contentList}" IsSynchronizedWithCurrentItem="True">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding title}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+
+                    <Grid Row="3">
+                        <Button Content="Remove Selected Entry" Height="30" Click="removeItem"/>
+                    </Grid>
+                </Grid>
             </Grid>
 
-            <Grid Row="0" Column="1" Margin="0,40,0,10">
-                <TextBlock Text="Date"/>
-                <ListBox ItemsSource="{Binding titleList}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding date}"/>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </Grid>
-
-            <Grid Row="0" Column="2" Margin="0,40,10,10">
-                <TextBlock Text="Notes"/>
-                <ListBox ItemsSource="{Binding titleList}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding note}"/>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+            <Grid Row="0" Column="2">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="10"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Grid Row="1">
+                        <Border Background="AliceBlue">
+                            <TextBox IsReadOnly="True" DataContext="{Binding contentList}" Text="{Binding title}"/>
+                        </Border>
+                    </Grid>
+                    
+                    <Grid Row="3">
+                        <Border Background="AliceBlue">
+                            <TextBox IsReadOnly="True" DataContext="{Binding contentList}" Text="{Binding date}"/>
+                        </Border>
+                    </Grid>
+                    
+                    <Grid Row="5">
+                        <Border Background="AliceBlue">
+                            <TextBox IsReadOnly="True" DataContext="{Binding contentList}" Text="{Binding note}"/>
+                        </Border>
+                    </Grid>
+                </Grid>
             </Grid>
         </Grid>
-
     </Grid>
 </Window>

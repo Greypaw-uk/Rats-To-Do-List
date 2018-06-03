@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Windows.Data;
 
 namespace To_Do_List
 {
@@ -37,6 +38,8 @@ namespace To_Do_List
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("note"));
             }
         }
+
+        public ListCollectionView selectedListEntry { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }
